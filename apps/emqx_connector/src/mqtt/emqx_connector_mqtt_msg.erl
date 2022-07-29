@@ -146,7 +146,13 @@ from_binary(Bin) -> binary_to_term(Bin).
 estimate_size(#message{topic = Topic, payload = Payload}) ->
     size(Topic) + size(Payload);
 estimate_size(#{topic := Topic, payload := Payload}) ->
-    size(Topic) + size(Payload).
+    size(Topic) + size(Payload);
+
+%% added. This two cases should be match
+estimate_size(#{<<"topic">> := Topic, <<"payload">> := Payload}) ->
+    size(Topic) + size(Payload);
+estimate_size(#{}) ->
+    128;
 
 set_headers(undefined, Msg) ->
     Msg;
