@@ -147,15 +147,13 @@ estimate_size(#message{topic = Topic, payload = Payload}) ->
     size(Topic) + size(Payload);
 estimate_size(#{topic := Topic, payload := Payload}) ->
     size(Topic) + size(Payload);
-
-%% added. This two cases should be match
 estimate_size(#{<<"topic">> := Topic, <<"payload">> := Payload}) ->
     size(Topic) + size(Payload);
 estimate_size(#{}) ->
-    128;
+    128.
 
 set_headers(undefined, Msg) ->
-    Msg.
+    Msg;
 set_headers(Val, Msg) ->
     emqx_message:set_headers(Val, Msg).
 topic(undefined, Topic) -> Topic;
