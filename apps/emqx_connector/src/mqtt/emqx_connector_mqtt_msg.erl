@@ -155,7 +155,7 @@ estimate_size(#{}) ->
     128;
 
 set_headers(undefined, Msg) ->
-    Msg;
+    Msg.
 set_headers(Val, Msg) ->
     emqx_message:set_headers(Val, Msg).
 topic(undefined, Topic) -> Topic;
